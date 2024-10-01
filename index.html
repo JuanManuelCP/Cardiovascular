@@ -18,7 +18,7 @@
             font-family: 'Montserrat', sans-serif;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #0d6efd;
             color: white;
             padding: 1em 0;
             text-align: center;
@@ -37,11 +37,14 @@
             color: #6c757d;
         }
         .btn {
-            background-color: #4CAF50;
+            background-color: #0d6efd;
             color: white;
             padding: 10px 20px;
             border: none;
             text-transform: uppercase;
+        }
+        .btn:hover {
+            background-color: #0b5ed7;
         }
         .card {
             background-color: white;
@@ -53,8 +56,22 @@
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #4CAF50;
+            background-color: #0d6efd;
             color: white;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -96,8 +113,29 @@
             <h3 class="section-subheading text-muted">Ingresa tus datos para conocer tu perfil de riesgo cardiovascular.</h3>
         </div>
         <div class="card">
-            <p>Conoce los factores que afectan tu salud cardiovascular al ingresar datos como tu presión arterial, hábitos alimenticios y nivel de actividad física.</p>
-            <button class="btn">Comenzar Evaluación</button>
+            <form>
+                <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" placeholder="Ingresa tu edad" required>
+                </div>
+                <div class="form-group">
+                    <label for="presion">Presión arterial (mmHg):</label>
+                    <input type="text" id="presion" name="presion" placeholder="Ingresa tu presión arterial">
+                </div>
+                <div class="form-group">
+                    <label for="actividad">Nivel de actividad física:</label>
+                    <select id="actividad" name="actividad">
+                        <option value="bajo">Bajo</option>
+                        <option value="moderado">Moderado</option>
+                        <option value="alto">Alto</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Enviar Evaluación</button>
+            </form>
         </div>
     </div>
 </section>
