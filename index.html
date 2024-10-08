@@ -73,6 +73,20 @@
             border: 1px solid #ced4da;
             border-radius: 5px;
         }
+        iframe {
+            width: 100%;
+            height: 315px;
+        }
+        .progress {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #0d6efd;
+            transition: width 0.3s;
+        }
     </style>
 </head>
 <body id="page-top">
@@ -113,7 +127,7 @@
             <h3 class="section-subheading text-muted">Ingresa tus datos para conocer tu perfil de riesgo cardiovascular.</h3>
         </div>
         <div class="card">
-            <form>
+            <form id="risk-form">
                 <div class="form-group">
                     <label for="nombre">Nombre completo:</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
@@ -123,8 +137,16 @@
                     <input type="number" id="edad" name="edad" placeholder="Ingresa tu edad" required>
                 </div>
                 <div class="form-group">
+                    <label for="edad">Peso:</label>
+                    <input type="number" id="edad" name="edad" placeholder="Ingresa tu peso en kilos" required>
+                </div>
+                <div class="form-group">
                     <label for="presion">Presión arterial (mmHg):</label>
                     <input type="text" id="presion" name="presion" placeholder="Ingresa tu presión arterial">
+                </div>
+                <div class="form-group">
+                    <label for="colesterol">Nivel de colesterol:</label>
+                    <input type="text" id="colesterol" name="colesterol" placeholder="Ingresa tu nivel de colesterol">
                 </div>
                 <div class="form-group">
                     <label for="actividad">Nivel de actividad física:</label>
@@ -136,6 +158,12 @@
                 </div>
                 <button type="submit" class="btn">Enviar Evaluación</button>
             </form>
+            <div id="risk-level">
+                <!-- El nivel de riesgo será mostrado aquí -->
+            </div>
+            <div id="recommendations">
+                <!-- Las recomendaciones basadas en el nivel de riesgo aparecerán aquí -->
+            </div>
         </div>
     </div>
 </section>
@@ -148,8 +176,86 @@
             <h3 class="section-subheading text-muted">Aprende sobre la prevención de enfermedades cardiovasculares.</h3>
         </div>
         <div class="card">
-            <p>Accede a videos, infografías y cuestionarios interactivos sobre nutrición, manejo del estrés y actividad física.</p>
-            <button class="btn">Explorar Módulos</button>
+            <div class="module">
+                <h3>Módulo 1: Introducción a la Salud Cardiovascular</h3>
+                <iframe src="https://www.youtube.com/embed/XxQwrN5fVFg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p>Descripción sobre la salud cardiovascular.</p>
+                
+                <!-- Porcentaje de completado Módulo 1 -->
+                <div>
+                    <h5>Porcentaje de Completado: <span id="progress-1">0</span>%</h5>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar-1" role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Cuestionario Módulo 1 -->
+                <form id="quiz-form-1">
+                    <h4>Cuestionario:</h4>
+                    <div class="form-group">
+                        <label for="q1">1. ¿Cuál es una de las principales causas de enfermedades cardiovasculares?</label>
+                        <input type="text" id="q1" name="q1" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q2">2. ¿Qué se recomienda para mantener un corazón saludable?</label>
+                        <input type="text" id="q2" name="q2" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q3">3. Menciona un factor de riesgo modificable.</label>
+                        <input type="text" id="q3" name="q3" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q4">4. ¿Qué rol juega la alimentación en la salud cardiovascular?</label>
+                        <input type="text" id="q4" name="q4" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q5">5. ¿Cuáles son los síntomas de un ataque al corazón?</label>
+                        <input type="text" id="q5" name="q5" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <button type="submit" class="btn">Enviar Cuestionario</button>
+                </form>
+                <div id="quiz-result-1"></div>
+            </div>
+            <div class="module">
+                <h3>Módulo 2: Prevención de Enfermedades</h3>
+                <iframe src="https://www.youtube.com/embed/kdoMuYOwtMw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p>Descripción sobre la prevención de enfermedades.</p>
+                
+                <!-- Porcentaje de completado Módulo 2 -->
+                <div>
+                    <h5>Porcentaje de Completado: <span id="progress-2">0</span>%</h5>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar-2" role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Cuestionario Módulo 2 -->
+                <form id="quiz-form-2">
+                    <h4>Cuestionario:</h4>
+                    <div class="form-group">
+                        <label for="q6">1. ¿Qué estilo de vida se sugiere para reducir el riesgo de enfermedades?</label>
+                        <input type="text" id="q6" name="q6" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q7">2. Menciona una actividad recomendada para mejorar la salud cardiovascular.</label>
+                        <input type="text" id="q7" name="q7" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q8">3. ¿Por qué es importante la actividad física regular?</label>
+                        <input type="text" id="q8" name="q8" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q9">4. ¿Qué alimentos son beneficiosos para la salud del corazón?</label>
+                        <input type="text" id="q9" name="q9" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="q10">5. ¿Cómo puede el estrés afectar la salud cardiovascular?</label>
+                        <input type="text" id="q10" name="q10" placeholder="Ingresa tu respuesta" required>
+                    </div>
+                    <button type="submit" class="btn">Enviar Cuestionario</button>
+                </form>
+                <div id="quiz-result-2"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -159,11 +265,11 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading">Retos Saludables</h2>
-            <h3 class="section-subheading text-muted">Participa en desafíos que mejorarán tu salud.</h3>
+            <h3 class="section-subheading text-muted">Participa en retos para mejorar tu salud.</h3>
         </div>
         <div class="card">
-            <p>Únete a desafíos individuales o grupales como caminatas diarias y actividades físicas para reducir tu riesgo cardiovascular.</p>
-            <button class="btn">Unirse a un Reto</button>
+            <p>Únete a nuestros retos saludables y gana premios mientras cuidas tu salud.</p>
+            <button class="btn">Ver Retos</button>
         </div>
     </div>
 </section>
@@ -172,11 +278,11 @@
 <section id="servicios-universitarios" class="page-section bg-light">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading">Integración con Servicios Universitarios</h2>
-            <h3 class="section-subheading text-muted">Accede a recursos de salud dentro de tu universidad.</h3>
+            <h2 class="section-heading">Servicios Universitarios</h2>
+            <h3 class="section-subheading text-muted">Apoyo profesional para tu salud.</h3>
         </div>
         <div class="card">
-            <p>Consulta a profesionales de la salud y participa en talleres educativos ofrecidos por la universidad.</p>
+            <p>Contamos con servicios de salud, orientación y apoyo psicológico a profesionales de la salud y participa en talleres educativos ofrecidos por la universidad.</p>
             <button class="btn">Ver Servicios</button>
         </div>
     </div>
@@ -208,5 +314,93 @@
 <!-- Bootstrap core JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/scripts.js"></script>
+<script>
+    // Evaluación de Riesgo
+    document.getElementById('risk-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let edad = document.getElementById('edad').value;
+        let presion = document.getElementById('presion').value;
+        let colesterol = document.getElementById('colesterol').value;
+        let actividad = document.getElementById('actividad').value;
+
+        // Calcular riesgo basado en la edad, presión arterial, colesterol y actividad
+        let riesgo = calcularRiesgo(edad, presion, colesterol, actividad);
+        document.getElementById('risk-level').innerText = 'Nivel de riesgo: ' + riesgo;
+
+        // Generar recomendaciones
+        let recomendaciones = generarRecomendaciones(riesgo);
+        document.getElementById('recommendations').innerText = recomendaciones;
+    });
+
+    function calcularRiesgo(edad, presion, colesterol, actividad) {
+        // Fórmula simplificada para determinar el riesgo
+        let riesgo = 'Bajo';
+        if (edad > 50 || presion > 140 || colesterol > 200 || actividad === 'bajo') {
+            riesgo = 'Alto';
+        }
+        return riesgo;
+    }
+
+    function generarRecomendaciones(riesgo) {
+        if (riesgo === 'Alto') {
+            return 'Se recomienda consultar a un profesional de la salud y adoptar hábitos saludables como una dieta balanceada y ejercicio regular.';
+        } else {
+            return 'Continúa con tus hábitos saludables y realiza chequeos médicos periódicos.';
+        }
+    }
+
+    // Cuestionarios
+    document.getElementById('quiz-form-1').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let respuestas1 = {
+            q1: document.getElementById('q1').value,
+            q2: document.getElementById('q2').value,
+            q3: document.getElementById('q3').value,
+            q4: document.getElementById('q4').value,
+            q5: document.getElementById('q5').value
+        };
+
+        // Calcular progreso y actualizar el porcentaje
+        actualizarProgreso(1);
+        
+        // Aquí puedes procesar las respuestas (guardar, enviar a un servidor, etc.)
+        document.getElementById('quiz-result-1').innerText = 'Gracias por enviar el cuestionario. Tus respuestas: ' + JSON.stringify(respuestas1);
+    });
+
+    document.getElementById('quiz-form-2').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let respuestas2 = {
+            q6: document.getElementById('q6').value,
+            q7: document.getElementById('q7').value,
+            q8: document.getElementById('q8').value,
+            q9: document.getElementById('q9').value,
+            q10: document.getElementById('q10').value
+        };
+
+        // Calcular progreso y actualizar el porcentaje
+        actualizarProgreso(2);
+        
+        // Aquí puedes procesar las respuestas (guardar, enviar a un servidor, etc.)
+        document.getElementById('quiz-result-2').innerText = 'Gracias por enviar el cuestionario. Tus respuestas: ' + JSON.stringify(respuestas2);
+    });
+
+    function actualizarProgreso(modulo) {
+        let totalPreguntas = 5;
+        let respuestasCompletadas = 0;
+
+        // Contar respuestas completadas
+        for (let i = 1; i <= totalPreguntas; i++) {
+            let respuesta = document.getElementById('q' + (modulo === 1 ? i : i + 5)).value;
+            if (respuesta) respuestasCompletadas++;
+        }
+
+        // Calcular porcentaje de completado
+        let porcentaje = (respuestasCompletadas / totalPreguntas) * 100;
+
+        // Actualizar el progreso en la interfaz
+        document.getElementById('progress-' + modulo).innerText = porcentaje.toFixed(0);
+        document.getElementById('progress-bar-' + modulo).style.width = porcentaje + '%';
+    }
+</script>
 </body>
 </html>
